@@ -10,7 +10,7 @@ def connect_to_socket(path):
 
 def get_server_answer(sock):
     data = sock.recv(4096)  # Получение данных из сокета.
-    print("Получено сообщение: " + data.decode('utf-8'))
+    print("Получено сообщение: " + data.decode("utf-8"))
 
 
 def sending(sock):
@@ -23,7 +23,7 @@ def sending(sock):
                 break
             elif data != "":
                 print("Отправка сообщения.")
-                sock.send(data.encode('utf-8'))
+                sock.send(data.encode("utf-8"))
                 get_server_answer(sock)
         except KeyboardInterrupt as e:
             break

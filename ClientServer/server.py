@@ -12,12 +12,14 @@ class MessageHandler(Thread):
         while True:
             data = self.connection.recv(4096)  # Получение данных из сокета.
 
-            if data.decode('utf-8') == "" or data.decode('utf-8') == "stop":  # Если не получили ничего ценного.
+            if (
+                data.decode("utf-8") == "" or data.decode("utf-8") == "stop"
+            ):  # Если не получили ничего ценного.
                 break
             else:
                 self.connection.send(b"Server: " + data)
-                print("Получено: " + data.decode('utf-8'))
-        print("Закрытие соединения.")
+                print("Получено: " + data.decode("utf-8"))
+        print("Закрытие сидфслвоединения.")
         self.connection.close()
 
 
@@ -36,7 +38,9 @@ class Server:
         self.sock.listen(10)
 
     def close_socket(self):
-        self.sock.shutdown(socket.SHUT_RDWR)  # Дальнейшая отправка и получение данных запрещены.
+        self.sock.shutdown(
+            socket.SHUT_RDWR
+        )  # Дальнейшая отправка и получение данных запрещены.
         self.sock.close()
 
     def listen(self):
